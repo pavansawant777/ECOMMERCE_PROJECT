@@ -1,0 +1,43 @@
+<%- include("navbar.ejs") %>
+<form action="/admin/update_collection" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="collection_id" value="<%=collection_info.collection_id%>"  class="form-control">
+
+    <div class="container-fluid bg-white p-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="mb-3 col-md-12">
+                        <h3>Update Collection</h3>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        Collection Category
+                        <select name="collection_catrgory" value="<%=collection_info.collection_catrgory%>" class="form-control">
+                            <option></option>
+                            <option <%= (collection_info.collection_catrgory == 'Casual Collection') ? 'selected':'' %>>Casual Collection</option>
+                            <option <%= (collection_info.collection_catrgory == 'Basic Collection') ? 'selected':'' %>>Basic Collection</option>
+                            <option <%= (collection_info.collection_catrgory == 'Best Selling Product') ? 'selected':'' %>>Best Selling Product</option>
+                            <option <%= (collection_info.collection_catrgory == 'Denim collection') ? 'selected':'' %>>Denim collection</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        Collection Title
+                        <input type="text" name="collection_title" value="<%=collection_info.collection_title%>" class="form-control">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        Collection Details
+                        <input type="text" name="collection_details" value="<%=collection_info.collection_details%>" class="form-control"  >
+                    </div>
+                    <div class="mb-3 col-3">
+                        Collection Image
+                        <input type="file" name="collection_image" class="form-control" required accept="image/*">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <img src="/uploads/<%=collection_info.collection_image%>" width="100%">
+                    </div>
+            <div class="mb-3 col-md-12 text-center">
+                <button class="btn btn-primary">Update Collection</button>
+            </div>
+        </div>
+    </div>
+</form>
+<%- include("footer.ejs") %>

@@ -1,0 +1,27 @@
+<%- include("navbar.ejs") %>
+<form action="/admin/save_quote" method="post" enctype="multipart/form-data">
+    <div class="container-fluid bg-white p-4">
+        <div class="row">
+            <div class="mb-3 col-md-12">
+                <h3>Add Quote</h3>
+            </div>
+            <div class="mb-3 col-6">
+                Quote Title
+                <input type="text" name="quote_title" value="<%=quote[0].quote_title%>" class="form-control">
+            </div>
+            <div class="mb-3 col-6">
+                Quote Details
+                <input type="text" name="quote_details" value="<%=quote[0].quote_details%>" class="form-control">
+            </div>
+            <div class="mb-3 col-6">
+                Quote Name
+                <input type="text" name="quote_name" value="<%=quote[0].quote_name%>" class="form-control">
+            </div>
+            <div class="mb-3 col-12 text-center">
+               <button class="btn btn-primary">Update Quote</button>
+            </div>
+        </div>  
+    </div>
+</form>  
+
+<%- include("footer.ejs") %>

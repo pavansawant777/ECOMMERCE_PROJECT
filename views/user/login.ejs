@@ -1,0 +1,25 @@
+<%- include('navbar.ejs') %>
+<br><br>
+<form action="/do_login" method="post">
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div style="border: 1px solid black; padding: 20px;">
+                <h3 style="text-align: center;">Login Now</h3>
+                Enter Mobile<br>
+                <input type="number" name="customer_mobile" class="form-control" style="width: 100%;">
+                <br>
+                Enter Password<br>
+                <input type="password" name="customer_password" class="form-control" style="width: 100%;">
+                <br>
+                <button>Login</button>
+                <br>
+                <a href="/register">New User, Create Account</a>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<br><br>
+<%- include('footer.ejs') %>

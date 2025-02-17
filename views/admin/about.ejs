@@ -1,0 +1,58 @@
+<%- include("navbar.ejs") %>
+<form action="/admin/save_about" method="post" enctype="multipart/form-data">
+    <div class="container-fluid bg-white p-4">
+        <div class="row">
+            <div class="mb-3 col-md-12">
+                <h3>Add About</h3>
+            </div>
+            <div class="mb-3 col-6">
+                About Title
+                <input type="text" name="about_title" class="form-control">
+            </div>
+            <div class="mb-3 col-6">
+                About Details
+                <input type="text" name="about_details" class="form-control">
+            </div>
+            <div class="mb-3 col-6">
+                About Image
+                <input type="file" name="about_image" class="form-control" accept="image/*">
+            </div>
+            <div class="mb-3 col-12 text-center">
+               <button class="btn btn-primary">Save About</button>
+            </div>
+        </div>  
+    </div>
+</form>   
+<br><br>
+<div class="container-fluid bg-white p-4">
+    <div class="row">
+        <div class="mb-3 col-md-12">
+            <h3>About</h3>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-sm table-bordered">
+                <tr>
+                    <th>Action</th>
+                    <th>SN</th>
+                    <th>Title</th>
+                    <th>Details</th>
+                    <th>Image</th>
+                </tr>
+                <% for(i=0;i<about.length;i++) { %> 
+                    <tr>
+                        <td style="white-space: nowrap;">
+                            <a href="/admin/edit_about/<%=about[i].about_id%>"><button class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button></a>
+                            <a onclick="return confirm('Are You Sure...?')" href="/admin/delete_about/<%=about[i].about_id%>" style="text-decoration: none;"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></a>
+                        </td>
+                        <td><%=i+1%></td>
+                        <td><%=about[i].about_title%></td>
+                        <td><%=about[i].about_details%></td>
+                        <td><img src="/uploads/<%=about[i].about_image%>" width="100px"></td>
+                    </tr>
+                    
+                <% } %>
+            </table>
+        </div>
+
+
+<%- include("footer.ejs") %>

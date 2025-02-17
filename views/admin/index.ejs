@@ -1,0 +1,49 @@
+<%-include("navbar.ejs")%>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body>
+<canvas id="myChart" style="width:100%;max-width:900px; background-color: white;  margin-left: 130px; margin-top: 50px; padding: 30px;"></canvas>
+
+<% if(last_week_orders) {%>
+<script>
+const xValues = [
+<% for (var i=0;i<last_week_orders.length;i++) { %>    
+'<%=last_week_orders[i].date.split("-").reverse().join("-")%>',
+    <% } %>
+];
+
+const yValues = [
+    
+<% for (var i=0;i<last_week_orders.length;i++){ %>    
+'<%=last_week_orders[i].orders%>',
+    <% } %>
+
+]; 
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+  options: {
+    title:{
+        display:true,
+        text:"ORDER HISTORY"
+    },
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {min: 0, max:10}}],
+    }
+  }
+});
+</script>
+<% } %>
+
+<%-include("footer.ejs")%>

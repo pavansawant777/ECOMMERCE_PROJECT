@@ -1,0 +1,40 @@
+<%- include("navbar.ejs") %>
+<form action="/admin/update_blog" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="blog_id" value="<%=blog_info.blog_id%>"  class="form-control">
+
+    <div class="container-fluid bg-white p-4">
+        <div class="row">
+            <div class="mb-3 col-md-12">
+                <h3>Update Blog</h3>
+            </div>
+            <div class="mb-3 col-6">
+                Blog Title
+                <input type="text" name="blog_title" value="<%=blog_info.blog_title%>" class="form-control">
+            </div>
+            <div class="mb-3 col-6">
+                Blog Label
+                <select name="blog_label" value="<%=blog_info.blog_label%>" class="form-control">
+                        <option></option>
+                        <option <%= (blog_info.blog_label == 'FASHION') ? 'selected':'' %>>FASHION</option>
+                        <option <%= (blog_info.blog_label == 'TRENDING') ? 'selected':'' %>>TRENDING</option>
+                        <option <%= (blog_info.blog_label == 'INSPIRATION') ? 'selected':'' %>>INSPIRATION</option>
+                    </select>
+            </div>
+            <div class="mb-3 col-6">
+                Blog Date
+                <input type="text" name="blog_date" value="<%=blog_info.blog_date%>" class="form-control">
+            </div>
+            <div class="mb-3 col-9">
+                Blog Image
+                <input type="file" name="blog_image" class="form-control" accept="image/*">
+            </div>
+            <div class="col-md-3 mb-4">
+                <img src="/uploads/<%=blog_info.blog_image%>" width="100%">
+            </div>
+            <div class="mb-3 col-12 text-center">
+               <button class="btn btn-primary">Update Blog</button>
+            </div>
+        </div>  
+    </div>
+</form>
+<%- include("footer.ejs") %>

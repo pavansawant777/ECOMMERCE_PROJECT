@@ -1,0 +1,101 @@
+<%- include("navbar.ejs") %>
+<style>
+    .disabled
+    {
+        background-color: gray !important;
+    }
+</style>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+            <img src="/uploads/<%=product.product_image1%>" width="100%" id="main_img" style="margin-bottom: 10px;">
+            <br>
+            <img src="/uploads/<%=product.product_image1%>" width="100px" onclick="main_img.src = this.src">
+            <img src="/uploads/<%=product.product_image2%>" width="100px" onclick="main_img.src = this.src">
+            <% if(product.product_image3) { %> 
+            <img src="/uploads/<%=product.product_image3%>" width="100px" onclick="main_img.src = this.src">
+            <% } %>
+            <% if(product.product_image4) { %>
+            <img src="/uploads/<%=product.product_image4%>" width="100px" onclick="main_img.src = this.src">
+            <% } %>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-dark" style="border-radius: 50px; padding: 3px; padding-left: 10px; padding-right: 10px;"><%=product.product_label%></button>
+            <h2 style="margin: 0px; padding: 0px;"><%=product.product_name%></h2>
+            <b style="color: black; font-weight: 700;">Color :</b> <%=product.product_colors%><br>
+            <b style="color: black; font-weight: 700;">Company :</b> <%=product.product_company%>
+            <br><br>
+            <h3 id="product_price" style="padding: 0px; margin: 0px;">
+                <%
+                var active = 0;
+                var active_id = 0;
+                var cart_id;
+                 for(var i=0;i<product_pricing.length;i++) { %>
+                    <% if(product_pricing[i].product_price > 0) {
+                        active == i;
+                        active_id = product_pricing[i].product_pricing_id;
+                        cart_id = product_pricing[i].cart_id;
+                        %>
+                        &#8377; <%=product_pricing[i].product_price%> 
+                        &nbsp;&nbsp;
+                        <del style="font-size: 18px; font-weight: 400;"> &#8377; <%=product_pricing[i].product_duplicate_price%> </del>
+                    <% break; } %>
+                <% } %>
+            </h3>
+            <% for(var i=0;i<product_pricing.length;i++) { %>
+                <% if(product_pricing[i].product_price > 0) { %>
+                    <button 
+                    class="btn size-btn <%=(active != i) ? 'btn-outline-dark':'active_btn'%> " 
+                    style="border-radius: 30px;" 
+                    onclick="setPrice('<%=product_pricing[i].product_price%>', this, '<%=product_pricing[i].product_duplicate_price%>','<%=product_pricing[i].product_pricing_id%>','<%=product_pricing[i].cart_id%>')">
+                    <%=product_pricing[i].product_size%>
+                </button>
+                <% } %>
+            <% } %>
+            <br>
+
+            <button id="add_to_cart_btn" onclick="add_to_cart()" class="<%=(cart_id) ? 'disabled':'' %>" <%=(cart_id) ? 'disabled':'' %> ><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp; Add To Cart</button>
+            <br><br>
+            <div>
+                <b style="color: black; font-weight: 700;">Details :</b>
+                <%-product.product_details%>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>
+<br><br>
+<script>
+    var active_pricing_id = '<%=active_id%>';
+    function setPrice(price,elmt,duplicate_price,pricing_id,cart_id)
+    {
+        active_pricing_id = pricing_id;
+        document.getElementById("product_price").innerHTML = `&#8377 ` +price+` &nbsp;&nbsp;
+        <del style="font-size: 18px; font-weight: 400;"> &#8377; ${duplicate_price} </del>`;
+        $(".size-btn").addClass("btn btn-outline-dark");
+        elmt.classList.remove("btn-outline-dark");
+
+        if(cart_id)
+        {
+            $("#add_to_cart_btn").attr("disabled","true");
+            $("#add_to_cart_btn").addClass("disabled");
+        }
+        else
+        {
+            $("#add_to_cart_btn").removeAttr("disabled");
+            $("#add_to_cart_btn").removeClass("disabled");
+        }
+    }
+</script>
+<script>
+    function add_to_cart()
+    {
+        // alert(active_pricing_id);
+        // alert('<%=product.product_id%>');
+        url = `/add_to_cart/<%=product.product_id%>/`+active_pricing_id;
+        location.href = url;
+    }
+</script>
+<%- include("footer.ejs") %>

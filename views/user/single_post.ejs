@@ -1,0 +1,104 @@
+<%- include("navbar.ejs") %>
+
+<section class="site-banner padding-small bg-light-grey">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="breadcrumbs">
+          <span class="item">
+            <a href="/">Home /</a>
+          </span>
+          <span class="item">
+            <a href="/blog">Blog /</a>
+          </span>
+          <span class="item">Single post</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="main-content d-flex flex-wrap padding-large">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+          <div class="post-meta">
+            <span class="post-date"><%=blogs[0].blog_date.split("-").reverse().join("-").slice(0,10)%></span> / <a href="/blog_info/:<%=blogs.blog_id%>" class="blog-categories"><%=blogs[0].blog_label%></a>
+          </div>
+          <h1 class="page-title"><%=blogs[0].blog_title%></h1>
+          <div class="feature-image">
+            <img src="/uploads/<%=blogs[0].blog_image%>" alt="post image" class="jarallax-img">
+          </div>
+        </div>
+      <div class="col-md-6">
+        <div class="post-content">
+          <p><strong>There are shortcuts to happiness, and dressing is one of them.</strong></p>
+          <p>Fashion is like dreaming with your feet! Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eisusmod tempor incidunt ut elit et.</p>
+          <blockquote>Sit suscipit tortor turpis sed fringilla lectus facilisis amet. Ipsum, amet dolor curabitur non aliquet orci urna volutpat. Id aliquam neque, ut vivamus sit imperdiet enim, lacus, vel.</blockquote>
+          <p>Lorem ipsum dolor sit amet,consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, <a href="single-product.html">Casual Product</a> exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p>
+            <strong>Are you amazed ?</strong>
+          </p>
+          <ul style="list-style-type:disc;" class="inner-list">
+            <li>Blandit mauris libero condimentum commodo sociis convallis sit.</li>
+            <li>Magna diam amet justo sed vel dolor et volutpat integer.</li>
+            <li>Laculis sit sapien hac odio elementum egestas neque.</li>
+          </ul>
+          <p>Lorem ipsum dolor sit amet,consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam,<span class="highlight">quis nostrud exercitation</span> ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <div class="post-tags">
+            <div class="block-tag">
+              <ul class="list-unstyled d-flex">
+                <li>
+                  <a href="#" class="btn btn-dark btn-small btn-rounded">Fashion</a>
+                </li>
+                <li>
+                  <a href="#" class="btn btn-dark btn-small btn-rounded">Hoodie</a>
+                </li>
+                <li>
+                  <a href="#" class="btn btn-dark btn-small btn-rounded">Casual</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="social-links d-flex margin-small">
+            <div class="element-title">Share:</div>
+            <ul class="d-flex list-unstyled">
+              <li>
+                <a target="_blank" href="<%=company_info.instagram_link%>">
+                  <i class="icon icon-instagram"></i>
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="<%=company_info.twitter_link%>">
+                  <i class="icon icon-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="<%=company_info.youtube_link%>">
+                  <i class="icon icon-youtube-play"></i>
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="<%=company_info.telegram_link%>">
+                  <i class="icon fa fa-telegram"></i>
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="https://wa.me<%=company_info.whatsapp_no%>">
+                  <i class="icon fa fa-whatsapp"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="single-post-navigation">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  
+<%- include("footer.ejs") %>

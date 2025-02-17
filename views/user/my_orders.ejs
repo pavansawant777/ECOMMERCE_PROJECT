@@ -1,0 +1,40 @@
+<%- include("navbar.ejs") %>
+
+    <style>
+        #my-orsders {
+            border: 1px solid black;
+            background-color: darkgray;
+            border-radius: 10px;
+            margin: 10px;
+            color: black;
+        }
+        .row{
+            margin-top: 20px;
+        }
+ 
+      
+    </style>
+    <div class="container p-3 text-center mb-4">
+        <h1>My orders</h1>
+        <div class="row" style="padding-left: 150px;">
+            <% for (var i=0;i<orders.length;i++) { %>
+                <div class="col-md-5" id="my-orsders">
+                    <div class="row"> 
+                        <div class="col-md-6">
+                            <strong>#ULTRAS00<%=orders[i].order_id%></strong><br>
+                            <strong>&#8377;<%=orders[i].order_amount%> /-</strong><br>
+                            <small>Payment Status : <br> <strong><%=orders[i].payment_status%></strong></small>
+                        </div>
+                        <div class="col-md-6">
+                            <strong><%=orders[i].order_date.split("-").reverse().join("-")%></strong><br>
+                            <small>Order Status :  <br><strong><%=orders[i].order_status%></strong></small><br>
+                            <a href="/order_details/<%=orders[i].order_id%>"><button class="btn btn-sm btn-primary">Details</button></a>
+
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <%- include("footer.ejs") %>

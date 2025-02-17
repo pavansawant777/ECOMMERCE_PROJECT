@@ -1,0 +1,47 @@
+<%- include ("navbar.ejs") %>
+
+<section class="site-banner jarallax min-height300 padding-large" style="background: url(/images/hero-image1.jpg) no-repeat; background-position: top;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="page-title">Blog page</h1>
+          <div class="breadcrumbs">
+            <span class="item">
+              <a href="/">Home /</a>
+            </span>
+            <span class="item">Blog</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="latest-blog" class="post-grid padding-large">
+    <div class="container">
+      <div class="row d-flex flex-wrap">
+        <% for(var i=0;i<blogs.length;i++) { %> 
+        <article class="col-md-4 post-item">
+          <div class="image-holder zoom-effect">
+            <a href="/single_post">
+              <img src="/uploads/<%=blogs[i].blog_image%>" alt="post" class="post-image">
+            </a>
+          </div>
+          <div class="post-content d-flex">
+            <div class="meta-date">
+              <div class="meta-day text-primary"><%=blogs[i].blog_date.split("-").reverse().join("-").slice(0,2)%></div>
+              <div class="meta-month"><%=blogs[i].blog_date.split("-").reverse().join("-").slice(3,10)%></div>
+            </div>
+            <div class="post-header">
+              <h3 class="post-title">
+                <a href="/single_post/<%=blogs[i].blog_id%>"><%=blogs[i].blog_title%></a>
+              </h3>
+              <a href="/single_post/<%=blogs[i].blog_id%>" class="blog-categories"><%=blogs[i].blog_label%></a>
+            </div>
+          </div>
+        </article>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+<%- include ("footer.ejs") %>

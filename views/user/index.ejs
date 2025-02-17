@@ -1,0 +1,324 @@
+<%- include('navbar.ejs') %>
+
+
+    <section id="billboard" class="overflow-hidden">
+
+      <button class="button-prev">
+        <i class="icon icon-chevron-left"></i>
+      </button>
+      <button class="button-next">
+        <i class="icon icon-chevron-right"></i>
+      </button>
+      <div class="swiper main-swiper">
+        <div class="swiper-wrapper">
+          <% for(var i=0;i<slides.length;i++) { %> 
+          <div class="swiper-slide" style="background-image: url('/uploads/<%=slides[i].slide_image%>');background-repeat: no-repeat;background-size: cover;background-position: center;">
+            <div class="banner-content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h2 class="banner-title"><%=slides[i].slide_title%></h2>
+                    <p><%=slides[i].slide_details%></p>
+                    <div class="btn-wrap">
+                      <a href="/shop" class="btn btn-light btn-medium d-flex align-items-center" tabindex="0"><%=slides[i].button_text%><i class="icon icon-arrow-io"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </section>
+
+    <section id="featured-products" class="product-store padding-large">
+      <div class="container">
+        <div class="section-header d-flex flex-wrap align-items-center justify-content-between">
+          <h2 class="section-title">Featured Products</h2>            
+          <div class="btn-wrap">
+            <a href="/shop" class="d-flex align-items-center">View all products <i class="icon icon icon-arrow-io"></i></a>
+          </div>            
+        </div>
+        <div class="swiper product-swiper overflow-hidden">
+          <div class="swiper-wrapper">
+            <% for(var i=0;i<products.length;i++) { %>
+            <div class="swiper-slide">
+              <div class="product-item">
+                <div class="image-holder">
+                  <img src="/uploads/<%=products[i].product_image1%>" alt="Books" class="product-image">
+                </div>
+                <a href="/product_info/<%=products[i].product_id%>">
+                <div class="cart-concern">
+                  <div class="cart-button d-flex justify-content-center align-items-center">
+                    <button type="button" class="btn-wrap cart-link d-flex align-items-center">View Product &nbsp; &nbsp; <i class="icon icon-arrow-io"></i>
+                    </button>
+                  </div>
+                </div>
+              </a>
+                <div class="product-detail">
+                  <h3 class="product-title">
+                    <a href="/shop?names=<%=products[i].product_label%>"><%=products[i].product_name%></a>
+                  </h3>
+                  <span class="item-price text-primary">&#8377; <%=products[i].price%>
+                    <del style="color: black; font-size: 20px;"> &nbsp;&#8377; <%=products[i].duplicate_price%>&nbsp;</del></span>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <section id="latest-collection">
+      <div class="container">
+        <div class="product-collection row">
+          <div class="col-lg-7 col-md-12 left-content">
+            <div class="collection-item">
+              <div class="products-thumb">
+                <img src="/uploads/<%=collection[0].collection_image%>" alt="collection item" class="large-image image-rounded">
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 product-entry">
+                <div class="categories"><%=collection[0].collection_catrgory%></div>
+                <h3 class="item-title"><%=collection[0].collection_title%></h3>
+                <p><%=collection[0].collection_details%></p>
+                <div class="btn-wrap">
+                  <a href="/shop" class="d-flex align-items-center">shop collection <i class="icon icon-arrow-io"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          
+          </div>
+          <div class="col-lg-5 col-md-12 right-content flex-wrap">
+            <% for(var i=1;i<collection.length;i++) { %>
+            <div class="collection-item top-item">
+              <div class="products-thumb">
+                <img src="/uploads/<%=collection[i].collection_image%>" alt="collection item" class="small-image image-rounded">
+              </div>
+              <div class="col-md-6 product-entry">
+                <div class="categories"><%=collection[i].collection_catrgory%></div>
+                <h3 class="item-title"><%=collection[i].collection_title%></h3>
+                <div class="btn-wrap">
+                  <a href="/shop" class="d-flex align-items-center">shop collection <i class="icon icon-arrow-io"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="subscribe" class="padding-large">
+      <div class="container">
+        <div class="row">
+          <div class="block-text col-md-6">
+            <div class="section-header">
+              <h2 class="section-title">Get 25% off Discount Coupons</h2>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictumst amet, metus, sit massa posuere maecenas. At tellus ut nunc amet vel egestas.</p>
+          </div>
+          <div class="subscribe-content col-md-6">
+            <form id="form" class="d-flex justify-content-between">
+              <input type="text" name="email" placeholder="Enter your email addresss here">
+              <button class="btn btn-dark">Subscribe Now</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="selling-products" class="product-store bg-light-grey padding-large">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Trending Products</h2>
+        </div>
+        <!-- <ul class="tabs list-unstyled">
+          <li class="active"><a href="/shop" style="padding-right: 30px; font-weight: bold;">All</a></li>
+          <% for(var i=0;i<category.length;i++) { %> 
+          <li><a href="/?category_id=<%=category[i].category_id%>" style="padding-right: 30px; font-weight: bold;"><%=category[i].category_name%></a></li>
+          <% } %>
+        </ul> -->
+          <div id="all">
+            <div class="row d-flex flex-wrap">
+              <% for(var i=0;i<trending.length;i++) { %>  
+              <div class="product-item col-lg-3 col-md-6 col-sm-6">
+                <div class="image-holder">
+                  <img src="/uploads/<%=trending[i].product_image1%>" alt="Books" class="product-image">
+                </div>
+                <a href="/product_info/<%=trending[i].product_id%>">
+                <div class="cart-concern">
+                  <div class="cart-button d-flex justify-content-center align-items-center">
+                    <button type="button" class="btn-wrap cart-link d-flex align-items-center">View Product &nbsp; &nbsp; <i class="icon icon-arrow-io"></i>
+                    </button>
+                  </div>
+                </div>
+                </a>
+                <div class="product-detail">
+                  <h3 class="product-title">
+                    <a href="/product_info/<%=trending[i].product_id%>"><%=trending[i].product_name%></a>
+                  </h3>
+                  <div class="item-price text-primary">&#8377; <%=trending[i].price%>
+                    <del style="color: black; font-size: 20px;">&nbsp;&#8377; <%=trending[i].duplicate_price%>&nbsp;</del>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="padding-large no-padding-bottom">
+      <div class="container">
+        <div class="reviews-content">
+          <div class="row d-flex flex-wrap">
+            <div class="col-md-2">
+              <div class="review-icon">
+                <i class="icon icon-right-quote"></i>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="swiper testimonial-swiper overflow-hidden">
+                <div class="swiper-wrapper">
+                  <% for(var i=0;i<testimonial.length;i++) { %> 
+                  <div class="swiper-slide">
+                    <div class="testimonial-detail">
+                      <p><%=testimonial[i].testimonial_details%></p>
+                      <div class="author-detail">
+                        <div class="name"><%=testimonial[i].testimonial_name%></div>
+                      </div>
+                    </div>
+                  </div>
+                  <% } %>
+                </div>
+              </div>
+              <div class="swiper-arrows">
+                <button class="prev-button">
+                  <i class="icon icon-arrow-left"></i>
+                </button>
+                <button class="next-button">
+                  <i class="icon icon-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="flash-sales" class="product-store padding-large">
+      
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Flash sales</h2>
+        </div>
+        <div class="swiper product-swiper flash-sales overflow-hidden">
+ 
+          <div class="swiper-wrapper">
+            <% for(var i=0;i<flash.length;i++) { %>
+            <div class="swiper-slide">
+              <div class="product-item">
+                <img src="/uploads/<%=flash[i].product_image1%>" alt="Books" class="product-image">
+                <a href="/product_info/<%=flash[i].product_id%>">
+                <div class="cart-concern">
+                  <div class="cart-button d-flex justify-content-center align-items-center">
+                    <button type="button" class="btn-wrap cart-link d-flex align-items-center">View Product &nbsp; &nbsp; <i class="icon icon-arrow-io"></i>
+                    </button>
+                  </div>
+                </div>
+                </a>
+                <div class="discount">15% Off</div>
+                <div class="product-detail">
+                  <h3 class="product-title">
+                    <a href="/product_info/<%=flash[i].product_id%>"><%=flash[i].product_name%></a>
+                  </h3>
+                  <div class="item-price text-primary">
+                    <del class="prev-price">&#8377; <%=flash[i].duplicate_price%></del>&nbsp; &#8377; <%=flash[i].price%>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+          <div class="swiper-pagination"></div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="shoppify-section-banner">
+  
+      <div class="container">
+        <div class="product-collection">
+          <div class="left-content collection-item">
+            <div class="products-thumb">
+              <img src="/uploads/<%=collection[0].collection_image%>" alt="collection item" class="large-image image-rounded">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 product-entry">
+              <div class="categories"><%=collection[0].collection_catrgory%></div>
+              <h3 class="item-title"><%=collection[0].collection_title%></h3>
+              <p><%=collection[0].collection_details%></p>
+              <div class="btn-wrap">
+                <a href="/shop" class="d-flex align-items-center">shop collection <i class="icon icon-arrow-io"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>        
+      </div>
+    
+    </section>
+
+    <section id="quotation" class="align-center padding-large">
+      <div class="inner-content">
+        <h2 class="section-title divider"><%=quote[0].quote_title%></h2>
+        <blockquote>
+          <q><%=quote[0].quote_details%></q>
+          <div class="author-name"><%=quote[0].quote_name%></div>
+        </blockquote>
+      </div>
+    </section>
+
+    <hr>
+    <section id="latest-blog" class="padding-large">
+      <div class="container">
+        <div class="section-header d-flex flex-wrap align-items-center justify-content-between">
+          <h2 class="section-title">our Journal</h2>
+          <div class="btn-wrap align-right">
+            <a href="/blog" class="d-flex align-items-center">Read All Articles <i class="icon icon icon-arrow-io"></i>
+            </a>
+          </div>
+        </div>
+        <div class="row d-flex flex-wrap">
+          <% for(var i=3;i<blogs.length;i++) { %> 
+            <article class="col-md-4 post-item">
+              <div class="image-holder zoom-effect">
+                <a href="/blog_info/<%=blogs[i].blog_id%>">
+                  <img src="/uploads/<%=blogs[i].blog_image%>" alt="post" class="post-image">
+                </a>
+              </div>
+              <div class="post-content d-flex">
+                <div class="meta-date">
+                  <div class="meta-day text-primary"><%=blogs[i].blog_date.split("-").reverse().join("-").slice(0,2)%></div>
+                  <div class="meta-month"><%=blogs[i].blog_date.split("-").reverse().join("-").slice(3,10)%></div>
+                </div>
+                <div class="post-header">
+                  <h3 class="post-title">
+                    <a href="/single_post/<%=blogs[i].blog_id%>"><%=blogs[i].blog_title%></a>
+                  </h3>
+                  <a href="/single_post/<%=blogs[i].blog_id%>" class="blog-categories"><%=blogs[i].blog_label%></a>
+                </div>
+              </div>
+            </article>
+            <% } %>
+        </div>
+      </div>
+    </section>
+
+    <%- include('footer.ejs') %>  
